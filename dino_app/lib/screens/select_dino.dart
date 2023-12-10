@@ -1,11 +1,13 @@
+import 'package:dino_app/screens/dino_info_screen.dart';
+import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dino_app/models/dinosaur.dart';
-import 'package:dino_app/widgets/widgets.dart';
-import 'package:dino_app/main.dart';
+
 
 
 class SelectDinoScreen extends StatelessWidget {
-  const SelectDinoScreen({Key? key}) : super(key: key);
+  final List<Map<String, dynamic>> dinosaurs;
+  const SelectDinoScreen({Key? key, required this.dinosaurs}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,41 +18,24 @@ class SelectDinoScreen extends StatelessWidget {
         children: [
           const TitleBar(title: "Select Dino"),
           const SizedBox(height: 20),
-          // Add your list of dinosaurs here
-          DinoListItem(
-            dino: Dinosaur(
-              commonName: "Tyrannosaurus Rex",
-              scientificName: "T. Rex",
-              era: "Cretaceous",
-              dietType: "Carnivore",
-              description: "A large dinosaur with short arms and powerful jaws.",
-              placeOfDiscovery: "North America",
-              imageURL: "https://picsum.photos/250",
-              weight: 9000,
-              height: 5,
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DinoInfoScreen(
-                    dino: Dinosaur(
-                      commonName: "Tyrannosaurus Rex",
-                      scientificName: "T. Rex",
-                      era: "Cretaceous",
-                      dietType: "Carnivore",
-                      description: "A large dinosaur with short arms and powerful jaws.",
-                      placeOfDiscovery: "North America",
-                      imageURL: "https://picsum.photos/250",
-                      weight: 9000,
-                      height: 5,
+          ListView.builder(
+            itemCount: dinosaurs.length,
+            itemBuilder: (context, index) {
+              return DinoListItem(
+                dino: dinosaurs[index],
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DinoInfoScreen(
+                        dino: dinosaurs[index],
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               );
             },
           ),
-          // Add more dinosaur items as needed
         ],
       ),
     );
@@ -58,7 +43,7 @@ class SelectDinoScreen extends StatelessWidget {
 }
 
 class DinoListItem extends StatelessWidget {
-  final Dinosaur dino;
+  final Map<String, dynamic> dino;
   final VoidCallback onTap;
 
   const DinoListItem({Key? key, required this.dino, required this.onTap})
@@ -71,10 +56,10 @@ class DinoListItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
         child: Text(
-          dino.commonName,
+          dino['name'],
           style: const TextStyle(
             fontSize: 24,
-            color: Colors.green, // Use Colors.green directly
+            color: Colors.green,
             fontWeight: FontWeight.bold,
           ),
         ),

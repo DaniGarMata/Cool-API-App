@@ -1,6 +1,11 @@
 import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dino_app/models/dinosaur.dart';
+import 'package:dino_app/api/api.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+import 'package:dino_app/screens/dino_info_screen.dart';
+
 
 void main() {
   runApp(const App());
@@ -12,84 +17,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MenuScreen(),
-    );
-  }
-}
-
-class DinoInfoScreen extends StatelessWidget {
-  const DinoInfoScreen({Key? key, required this.dino}) : super(key: key);
-
-  final Dinosaur dino;
-
-  @override
-  Widget build(BuildContext context) {
-    const hspace = SizedBox(height: 10);
-    return Scaffold(
-      backgroundColor: Colors.lightGreen[300],
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TitleBar(title: "Dino Info Page"),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              children: [
-                hspace,
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    dino.commonName,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      color: Colors.green,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    dino.scientificName,
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 30,
-                      color: Colors.green,
-                    ),
-                  ),
-                ),
-                hspace,
-                Image(
-                  image: NetworkImage(dino.imageURL),
-                ),
-                hspace,
-                Text(
-                  dino.description,
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 20,
-                    color: Colors.green,
-                  ),
-                ),
-                hspace,
-                InfoRow(category: "Weight: ", value: "${dino.weight}kg"),
-                InfoRow(category: "Height: ", value: "${dino.height}m"),
-                InfoRow(category: "Diet: ", value: dino.dietType),
-                InfoRow(
-                    category: "Place of discovery: ",
-                    value: dino.placeOfDiscovery),
-                InfoRow(category: "Era: ", value: dino.era),
-              ],
-            ),
-          ),
-        ],
-      ),
+      home: MenuScreen(api: DinosaurApi()),
     );
   }
 }
 
 class MenuScreen extends StatelessWidget {
-  const MenuScreen({Key? key}) : super(key: key);
+  final DinosaurApi api;
+  const MenuScreen({Key? key, required this.api}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,53 +35,66 @@ class MenuScreen extends StatelessWidget {
         children: [
           const TitleBar(title: "Dino App Menu"),
           const SizedBox(height: 20),
-          // Add your menu items here
-          MenuItem(
-            title: "Select Dino",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SelectDinoScreen(),
-                ),
-              );
+          ElevatedButton(
+            onPressed: () async {
+              try {
+                final dinosaurs = await api.fetchDinosaurs();
+
+                if (dinosaurs.isNotEmpty) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SelectDinoScreen(dinosaurs: dinosaurs),
+                    ),
+                  );
+                } else {
+                  // Handle the case when there are no dinosaurs
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('No Dinosaurs'),
+                      content: const Text('There are no dinosaurs available.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              } catch (e) {
+                // Handle API error
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Error'),
+                    content: const Text('Failed to load dinosaurs. Please try again later.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('OK'),
+                      ),
+                    ],
+                  ),
+                );
+              }
             },
+            child: const Text("Select Dino"),
           ),
-          // Add more menu items as needed
         ],
       ),
     );
   }
 }
 
-class MenuItem extends StatelessWidget {
-  final String title;
-  final VoidCallback onTap;
-
-  const MenuItem({Key? key, required this.title, required this.onTap})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-        child: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 24,
-            color: Colors.green,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class SelectDinoScreen extends StatelessWidget {
-  const SelectDinoScreen({Key? key}) : super(key: key);
+  final List<Map<String, dynamic>> dinosaurs;
+  const SelectDinoScreen({Key? key, required this.dinosaurs}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -157,41 +105,22 @@ class SelectDinoScreen extends StatelessWidget {
         children: [
           const TitleBar(title: "Select Dino"),
           const SizedBox(height: 20),
-          // Add your list of dinosaurs here
-          DinoListItem(
-            dino: Dinosaur(
-              commonName: "Tyrannosaurus Rex",
-              scientificName: "T. Rex",
-              era: "Cretaceous",
-              dietType: "Carnivore",
-              description: "A large dinosaur with short arms and powerful jaws.",
-              placeOfDiscovery: "North America",
-              imageURL: "https://picsum.photos/250",
-              weight: 9000,
-              height: 5,
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DinoInfoScreen(
-                    dino: Dinosaur(
-                      commonName: "Tyrannosaurus Rex",
-                      scientificName: "T. Rex",
-                      era: "Cretaceous",
-                      dietType: "Carnivore",
-                      description: "A large dinosaur with short arms and powerful jaws.",
-                      placeOfDiscovery: "North America",
-                      imageURL: "https://picsum.photos/250",
-                      weight: 9000,
-                      height: 5,
+          ListView.builder(
+            itemCount: dinosaurs.length,
+            itemBuilder: (context, index) {
+              return DinoListItem(
+                dino: Dinosaur.fromJson(dinosaurs[index]),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SelectDinoScreen(dinosaurs: dinosaurs),
                     ),
-                  ),
-                ),
+                  );
+                },
               );
             },
           ),
-          // Add more dinosaur items as needed
         ],
       ),
     );
