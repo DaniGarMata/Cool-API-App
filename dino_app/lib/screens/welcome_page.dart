@@ -20,7 +20,7 @@ class WelcomePage extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/menu'); // Navigate to the main page
+                Navigator.pushReplacementNamed(context, '/menu');
               },
               child: Text('Get Started'),
             ),
