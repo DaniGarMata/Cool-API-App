@@ -2,9 +2,9 @@
 
 Discover the fascinating world of dinosaurs with our interactive app! Explore a virtual prehistoric world, learn about various dinosaur species. Unearth the past and bring dinosaurs to life in this engaging and educational experience for all ages!
 
-# (Images here)
-
 # App Screens
+
+![screens](https://imgur.com/c4vHOMs)
 
 1. The first screen displays at the top the game title followed by a photo of a random dinosaur (which can change when returning to that screen later). Then, a button with the title "Start" is presented.
 
