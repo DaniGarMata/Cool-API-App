@@ -4,7 +4,7 @@ Discover the fascinating world of dinosaurs with our interactive app! Explore a 
 
 # App Screens
 
-![Screens](dino_app/images/Cool_App.jpg)
+![Screens](dino_app/images/Cool_App.png)
 
 1. The first screen displays at the top the game title followed by a photo of a random dinosaur (which can change when returning to that screen later). Then, a button with the title "Start" is presented.
 
