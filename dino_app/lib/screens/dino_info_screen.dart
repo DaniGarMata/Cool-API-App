@@ -1,16 +1,19 @@
+import 'package:dino_app/api/api.dart';
+import 'package:dino_app/models/dinosaur.dart';
 import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 //import 'package:dino_app/models/dinosaur.dart';
 
 class DinoInfoScreen extends StatelessWidget {
-  final Map<String, dynamic> dino;
-  
-  const DinoInfoScreen({Key? key, required this.dino}) : super(key: key);
-  
+  final Dinosaur dino;
+
+  const DinoInfoScreen({Key? key, required this.dino, required dinosaurNames, required DinosaurApi api}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     const hspace = SizedBox(height: 10);
+
     return Scaffold(
       backgroundColor: Colors.lightGreen[300],
       body: Column(
@@ -25,7 +28,7 @@ class DinoInfoScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    dino['name'], // Access the 'name' key from the map
+                    dino.commonName,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
@@ -33,8 +36,39 @@ class DinoInfoScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    dino.scientificName,
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 30,
+                      color: Colors.green[900],
+                    ),
+                  ),
+                ),
                 hspace,
-                // Add the rest of your UI components here...
+                Image(
+                  image: NetworkImage(dino.imageURL),
+                ),
+                hspace,
+                Text(
+                  dino.description,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20,
+                    color: Colors.green[900],
+                  ),
+                ),
+                hspace,
+                InfoRow(category: "Weight: ", value: "${dino.weight}kg"),
+                InfoRow(category: "Height: ", value: "${dino.height}m"),
+                InfoRow(category: "Diet: ", value: dino.dietType),
+                InfoRow(
+                  category: "Place of discovery: ",
+                  value: dino.placeOfDiscovery,
+                ),
+                InfoRow(category: "Era: ", value: dino.era),
               ],
             ),
           ),
