@@ -34,3 +34,35 @@ class TitleBar extends StatelessWidget {
     );
   }
 }
+
+class InfoRow extends StatelessWidget {
+  const InfoRow({super.key, required this.category, required this.value});
+
+  final String category, value;
+
+  final TextStyle smallBold = const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 10,
+  );
+  final TextStyle smallNormal = const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 10,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          category,
+          style: smallBold,
+        ),
+        Text(
+          value,
+          style: smallBold,
+        )
+      ],
+    );
+  }
+}

@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 class Dinosaur{
 	String commonName, scientificName, era, 
     dietType, description, placeOfDiscovery, imageURL;
-  Float weight, height;
+  double weight, height;
 	
 	Dinosaur({
 		required this.commonName,
