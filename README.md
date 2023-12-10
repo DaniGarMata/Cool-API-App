@@ -22,9 +22,9 @@ Discover the fascinating world of dinosaurs with our interactive app! Explore a 
 
 This App was made by:
 
-  - Ogylandy Yespagambetov 
-  - Dani Garcia 
-  - Hector Garcia 
+  - Ogylandy Yespagambetov https://github.com/Oga29
+  - Dani Garcia https://github.com/DaniGarMata
+  - Hector Garcia https://github.com/Neidragon
     
 ## Getting Started
 
