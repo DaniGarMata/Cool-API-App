@@ -8,7 +8,7 @@ class TitleBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 100,
       color: Colors.green[900],
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -16,16 +16,18 @@ class TitleBar extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
               size: 50,
+              color: Colors.lightGreen[300],
             ),
           ),
           Text(
             title,
-            style: const TextStyle(
-              color: Colors.lightGreen,
-              fontSize: 50,
+            style: TextStyle(
+              color: Colors.lightGreen[300],
+              fontWeight: FontWeight.bold,
+              fontSize: 40,
             ),
           ),
           const SizedBox(width: 50),
@@ -36,17 +38,18 @@ class TitleBar extends StatelessWidget {
 }
 
 class InfoRow extends StatelessWidget {
-  const InfoRow({super.key, required this.category, required this.value});
+  InfoRow({super.key, required this.category, required this.value});
 
   final String category, value;
 
-  final TextStyle smallBold = const TextStyle(
+  final TextStyle smallBold = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 10,
+    fontSize: 20,
+    color: Colors.green[900],
   );
-  final TextStyle smallNormal = const TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 10,
+  final TextStyle smallNormal = TextStyle(
+    fontSize: 20,
+    color: Colors.green[900],
   );
 
   @override
@@ -60,7 +63,7 @@ class InfoRow extends StatelessWidget {
         ),
         Text(
           value,
-          style: smallBold,
+          style: smallNormal,
         )
       ],
     );

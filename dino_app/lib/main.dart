@@ -14,15 +14,15 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: DinoInfoScreen(
         dino: Dinosaur(
-          commonName: "common name",
-          scientificName: "scient name",
+          commonName: "jerry",
+          scientificName: "gerald",
           era: "triassic",
           dietType: "food",
           description: "cool guy",
           placeOfDiscovery: "europe",
-          imageURL: "https://picsum.photos/300",
-          weight: 20.0,
-          height: 30.0,
+          imageURL: "https://picsum.photos/250",
+          weight: 20,
+          height: 30,
         ),
       ),
     );
@@ -33,32 +33,70 @@ class DinoInfoScreen extends StatelessWidget {
   const DinoInfoScreen({super.key, required this.dino});
 
   final Dinosaur dino;
+  
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const TitleBar(title: "Dino info page"),
-        Text(
-          dino.commonName,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+    const hspace = SizedBox(height: 10);
+    return Scaffold(
+      backgroundColor: Colors.lightGreen[300],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const TitleBar(title: "Dino Info Page"),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              children: [
+                hspace,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    dino.commonName,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Colors.green[900],
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    dino.scientificName,
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 30,
+                      color: Colors.green[900],
+                    ),
+                  ),
+                ),
+                hspace,
+                Image(
+                  image: NetworkImage(dino.imageURL),
+                ),
+                hspace,
+                Text(
+                  dino.description,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20,
+                    color: Colors.green[900],
+                  ),
+                ),
+                hspace,
+                InfoRow(category: "Weight: ", value: "${dino.weight}kg"),
+                InfoRow(category: "Height: ", value: "${dino.height}m"),
+                InfoRow(category: "Diet: ", value: dino.dietType),
+                InfoRow(
+                    category: "Place of discovery: ",
+                    value: dino.placeOfDiscovery),
+                InfoRow(category: "Era: ", value: dino.era),
+              ],
+            ),
           ),
-        ),
-        Text(
-          dino.scientificName,
-          style: const TextStyle(
-            fontStyle: FontStyle.italic,
-            fontSize: 20,
-          ),
-        ),
-        Image(
-          image: NetworkImage(dino.imageURL),
-        ),
-
-      ],
+        ],
+      ),
     );
   }
 }
