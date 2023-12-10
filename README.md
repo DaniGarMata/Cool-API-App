@@ -2,7 +2,8 @@
 
 Discover the fascinating world of dinosaurs with our interactive app! Explore a virtual prehistoric world, learn about various dinosaur species. Unearth the past and bring dinosaurs to life in this engaging and educational experience for all ages!
 
-# App Screens
+# App Screens 
+## (concept)
 
 ![Screens](dino_app/images/Cool_App.png)
 
