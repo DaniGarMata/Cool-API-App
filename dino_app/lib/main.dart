@@ -2,10 +2,9 @@ import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dino_app/models/dinosaur.dart';
 import 'package:dino_app/api/api.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
-import 'package:dino_app/screens/dino_info_screen.dart';
-
+//import 'package:http/http.dart';
+//import 'dart:convert';
+//import 'package:dino_app/screens/dino_info_screen.dart';
 
 void main() {
   runApp(const App());
@@ -17,7 +16,44 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MenuScreen(api: DinosaurApi()),
+      home: TitleScreen(api: DinosaurApi()),
+    );
+  }
+}
+
+class TitleScreen extends StatelessWidget {
+  final DinosaurApi api;
+  const TitleScreen({super.key, required this.api});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.lightGreen[300],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const SizedBox(height: 50),
+            Text(
+              "Dino App",
+              style: TextStyle(
+                color: Colors.green[900],
+                fontWeight: FontWeight.bold,
+                fontSize: 50,
+              ),
+            ),
+            const SizedBox(height: 100),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MenuScreen(api: api)));
+                },
+                child: const Text("Start")),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -44,7 +80,8 @@ class MenuScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SelectDinoScreen(dinosaurs: dinosaurs),
+                      builder: (context) =>
+                          SelectDinoScreen(dinosaurs: dinosaurs),
                     ),
                   );
                 } else {
@@ -71,7 +108,8 @@ class MenuScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => AlertDialog(
                     title: const Text('Error'),
-                    content: const Text('Failed to load dinosaurs. Please try again later.'),
+                    content: const Text(
+                        'Failed to load dinosaurs. Please try again later.'),
                     actions: [
                       TextButton(
                         onPressed: () {
@@ -114,7 +152,8 @@ class SelectDinoScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SelectDinoScreen(dinosaurs: dinosaurs),
+                      builder: (context) =>
+                          SelectDinoScreen(dinosaurs: dinosaurs),
                     ),
                   );
                 },
@@ -142,9 +181,9 @@ class DinoListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
         child: Text(
           dino.commonName,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 24,
-            color: Colors.green,
+            color: Colors.green[900],
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -162,11 +201,11 @@ class InfoRow extends StatelessWidget {
   final TextStyle smallBold = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 20,
-    color: Colors.green,
+    color: Colors.green[900],
   );
   final TextStyle smallNormal = TextStyle(
     fontSize: 20,
-    color: Colors.green,
+    color: Colors.green[900],
   );
 
   @override

@@ -57,9 +57,9 @@ class DinoListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
         child: Text(
           dino['name'],
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 24,
-            color: Colors.green,
+            color: Colors.green[900],
             fontWeight: FontWeight.bold,
           ),
         ),
