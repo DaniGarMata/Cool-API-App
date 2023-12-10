@@ -43,7 +43,7 @@ class DinoInfoScreen extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
-                      color: Colors.green,
+                      color: Colors.green[900],
                     ),
                   ),
                 ),
@@ -54,7 +54,7 @@ class DinoInfoScreen extends StatelessWidget {
                     style: TextStyle(
                       fontStyle: FontStyle.italic,
                       fontSize: 30,
-                      color: Colors.green,
+                      color: Colors.green[900],
                     ),
                   ),
                 ),
@@ -68,7 +68,7 @@ class DinoInfoScreen extends StatelessWidget {
                   style: TextStyle(
                     fontStyle: FontStyle.italic,
                     fontSize: 20,
-                    color: Colors.green,
+                    color: Colors.green[900],
                   ),
                 ),
                 hspace,
@@ -134,9 +134,9 @@ class MenuItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
         child: Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 24,
-            color: Colors.green,
+            color: Colors.green[900],
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -213,9 +213,9 @@ class DinoListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
         child: Text(
           dino.commonName,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 24,
-            color: Colors.green,
+            color: Colors.green[900],
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -233,11 +233,11 @@ class InfoRow extends StatelessWidget {
   final TextStyle smallBold = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 20,
-    color: Colors.green,
+    color: Colors.green[900],
   );
   final TextStyle smallNormal = TextStyle(
     fontSize: 20,
-    color: Colors.green,
+    color: Colors.green[900],
   );
 
   @override
