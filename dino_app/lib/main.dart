@@ -5,6 +5,7 @@ import 'package:dino_app/api/api.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:dino_app/screens/dino_info_screen.dart';
+import 'package:dino_app/screens/welcome_page.dart';
 
 
 void main() {
@@ -17,7 +18,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MenuScreen(api: DinosaurApi()),
+      initialRoute: '/welcome', // Set the initial route to the welcome page
+      routes: {
+        '/welcome': (context) => WelcomePage(),
+        '/menu': (context) => MenuScreen(api: DinosaurApi()), // Use your main menu screen here
+      },
     );
   }
 }
