@@ -13,10 +13,14 @@ class MenuScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.lightGreen[300],
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          TitleBar(title: "Dino App Menu"),
-          SizedBox(height: 20),
+          const TitleBar(title: "Era Select"),
+          const EraButton(name: "Triassic", page: "idk"),
+          Container(height: 1, width: 200, color: Colors.green[900]),
+          const EraButton(name: "Jurassic", page: "idk"),
+          Container(height: 1, width: 200, color: Colors.green[900]),
+          const EraButton(name: "Cretaceous", page: "idk"),
           ElevatedButton(
             onPressed: () async {
               try {
@@ -35,14 +39,14 @@ class MenuScreen extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: Text('No Dinosaurs'),
-                      content: Text('There are no dinosaurs available.'),
+                      title: const Text('No Dinosaurs'),
+                      content: const Text('There are no dinosaurs available.'),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text('OK'),
+                          child: const Text('OK'),
                         ),
                       ],
                     ),
@@ -52,21 +56,21 @@ class MenuScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Error'),
-                    content: Text('Failed to load dinosaurs. Please try again later.'),
+                    title: const Text('Error'),
+                    content: const Text('Failed to load dinosaurs. Please try again later.'),
                     actions: [
                       TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text('OK'),
+                        child: const Text('OK'),
                       ),
                     ],
                   ),
                 );
               }
             },
-            child: Text("Select Dino"),
+            child: const Text("Select Dino"),
           ),
         ],
       ),

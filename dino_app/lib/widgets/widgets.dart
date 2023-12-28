@@ -69,3 +69,25 @@ class InfoRow extends StatelessWidget {
     );
   }
 }
+
+class EraButton extends StatelessWidget {
+  const EraButton({super.key, required this.name, required this.page});
+
+  final String name, page;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Center(
+        child: Text(
+          name,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 50,
+            color: Colors.green[900],
+          ),
+        ),
+      ),
+    );
+  }
+}

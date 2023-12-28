@@ -1,4 +1,4 @@
-import 'package:dino_app/screens/menu.dart';
+import 'package:dino_app/screens/era_select_screen.dart';
 import 'package:dino_app/screens/select_dino.dart';
 import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
