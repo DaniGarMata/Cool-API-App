@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TitleBar extends StatelessWidget {
-  const TitleBar({super.key, required this.title});
+  const TitleBar({super.key, required this.title, required this.backPage});
 
-  final String title;
+  final String title, backPage;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class TitleBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.pushReplacementNamed(context, '/$backPage');},
             icon: Icon(
               Icons.arrow_back,
               size: 50,
@@ -71,9 +71,9 @@ class InfoRow extends StatelessWidget {
 }
 
 class EraButton extends StatelessWidget {
-  const EraButton({super.key, required this.name, required this.page});
+  const EraButton({super.key, required this.name, required this.screen});
 
-  final String name, page;
+  final String name, screen;
 
   @override
   Widget build(BuildContext context) {

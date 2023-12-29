@@ -35,7 +35,7 @@ class WelcomePage extends StatelessWidget {
                         MaterialStatePropertyAll(Colors.green[900]),
                     overlayColor: MaterialStatePropertyAll(Colors.green[900])),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/menu');
+                  Navigator.pushReplacementNamed(context, '/select_era');
                 },
                 child: Text(
                   'Start',

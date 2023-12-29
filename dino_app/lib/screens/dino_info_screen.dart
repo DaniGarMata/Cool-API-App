@@ -19,7 +19,7 @@ class DinoInfoScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TitleBar(title: "Dino Info Page"),
+          const TitleBar(title: "Dino Info Page", backPage: "dino_select",),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(

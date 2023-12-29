@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:dino_app/widgets/widgets.dart';
 import 'package:dino_app/screens/select_dino.dart';
 
-class MenuScreen extends StatelessWidget {
+class EraSelectScreen extends StatelessWidget {
   final DinosaurApi api;
 
-  const MenuScreen({Key? key, required this.api}) : super(key: key);
+  const EraSelectScreen({Key? key, required this.api}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +14,14 @@ class MenuScreen extends StatelessWidget {
       backgroundColor: Colors.lightGreen[300],
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const TitleBar(title: "Era Select"),
-          const EraButton(name: "Triassic", page: "idk"),
+          const TitleBar(title: "Era Select", backPage: "welcome",),
+          const EraButton(name: "Triassic", screen: "idk"),
           Container(height: 1, width: 200, color: Colors.green[900]),
-          const EraButton(name: "Jurassic", page: "idk"),
+          const EraButton(name: "Jurassic", screen: "idk"),
           Container(height: 1, width: 200, color: Colors.green[900]),
-          const EraButton(name: "Cretaceous", page: "idk"),
+          const EraButton(name: "Cretaceous", screen: "idk"),
           ElevatedButton(
             onPressed: () async {
               try {

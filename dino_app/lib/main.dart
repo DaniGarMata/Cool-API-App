@@ -23,7 +23,7 @@ class App extends StatelessWidget {
       initialRoute: '/welcome',
       routes: {
         '/welcome': (context) => WelcomePage(),
-        '/menu': (context) => MenuScreen(api: api),
+        '/select_era': (context) => EraSelectScreen(api: api),
         '/select_dino': (context) => SelectDinoScreen(api: api, dinosaurNames: [],),
         '/dino_info': (context) {
           var dino2 = null;
