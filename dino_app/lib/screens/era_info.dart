@@ -22,7 +22,29 @@ class EraInfoScreen extends StatelessWidget {
             child: Column(
               children: [
                 hspace,
-                Align(),
+                Text(
+                  era.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Colors.green[900],
+                  ),
+                ),
+                hspace,
+                Image(
+                  image: NetworkImage(era.imageURL),
+                ),
+                hspace,
+                InfoRow(category: "Duration: ", value: "${era.start}BC - ${era.end}BC"),
+                hspace,
+                Text(
+                  era.description,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20,
+                    color: Colors.green[900],
+                  ),
+                ),
               ],
             ),
           )

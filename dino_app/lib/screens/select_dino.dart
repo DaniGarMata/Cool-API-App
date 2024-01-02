@@ -1,4 +1,5 @@
 import 'package:dino_app/api/api.dart';
+import 'package:dino_app/models/dinosaur.dart';
 import 'package:dino_app/screens/dino_info_screen.dart';
 import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -15,15 +16,24 @@ class SelectDinoScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          TitleBar(title: "$era list", backPage: "select_era"),
+          TitleBar(title: "$era dinos", backPage: "select_era"),
           ListView.builder(
             itemCount: dinosaurNames.length,
             itemBuilder: (context, index) {
               final dinoName = dinosaurNames[index];
-              return ListTile(
-                title: Text(dinoName),
+              return DinoListItem(
+                dino: Dinosaur(
+                  commonName: "pee", 
+                  scientificName: "piss", 
+                  era: "lol", 
+                  dietType: "peepee", 
+                  description: "woaw", 
+                  placeOfDiscovery: "aa", 
+                  imageURL: "https://picsum.photos/300/200", 
+                  weight: 3, 
+                  height: 3));}
                 // Add onTap to navigate to DinoInfoScreen or perform any action
-                onTap: () async {
+                /*onTap: () async {
                   try {
                     final dinosaur = await api.fetchDinosaur(dinoName);
                     Navigator.push(
@@ -52,10 +62,10 @@ class SelectDinoScreen extends StatelessWidget {
                         ],
                       ),
                     );
-                  }
-                },
+                  };
+                }
               );
-            },
+            },*/
           ),
         ],
       ),
