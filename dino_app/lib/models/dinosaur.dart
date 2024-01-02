@@ -30,6 +30,7 @@ class Dinosaur {
     );
   }
 }
+
 Future<List<Dinosaur>> fetchDinosaurs() async {
   var http;
   final response = await http.get(Uri.parse('https://dinoipsum.com/api/?format=json'));

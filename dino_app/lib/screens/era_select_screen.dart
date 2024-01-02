@@ -33,6 +33,7 @@ class EraSelectScreen extends StatelessWidget {
                       builder: (context) => SelectDinoScreen(
                         dinosaurNames: dinosaurNames,
                         api: api,
+                        era: "papope"
                       ),
                     ),
                   );

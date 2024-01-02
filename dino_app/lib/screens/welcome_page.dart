@@ -1,4 +1,6 @@
+import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:dino_app/models/dinosaur.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -55,6 +57,18 @@ class WelcomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
+              DinoListItem(
+                  dino: Dinosaur(
+                commonName: "poop",
+                scientificName: "shit",
+                era: "doodoo",
+                dietType: "dookey",
+                description: "caca",
+                placeOfDiscovery: "skibidi toilet",
+                imageURL: "https://picsum.photos/50",
+                weight: 3,
+                height: 3,
+              ))
             ],
           ),
         ),

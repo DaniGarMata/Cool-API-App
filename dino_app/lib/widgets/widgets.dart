@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dino_app/models/dinosaur.dart';
 
 class TitleBar extends StatelessWidget {
   const TitleBar({super.key, required this.title, required this.backPage});
@@ -15,7 +16,9 @@ class TitleBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           IconButton(
-            onPressed: () {Navigator.pushReplacementNamed(context, '/$backPage');},
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/$backPage');
+            },
             icon: Icon(
               Icons.arrow_back,
               size: 50,
@@ -89,5 +92,56 @@ class EraButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class DinoListItem extends StatelessWidget {
+  const DinoListItem({super.key, required this.dino});
+
+  final Dinosaur dino;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        height: 50,
+        child: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image(
+                image: NetworkImage(dino.imageURL),
+              ),
+              SizedBox(
+                width: 200,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      dino.commonName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.green[900],
+                      ),
+                    ),
+                    Text(
+                      dino.scientificName,
+                      style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontSize: 20,
+                        color: Colors.green[900],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.green[900],
+              )
+            ],
+          ),
+        ));
   }
 }
