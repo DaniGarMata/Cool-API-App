@@ -36,6 +36,14 @@ class App extends StatelessWidget {
             dinosaurNames: null,
           );
         },
+        '/dino_image': (context) {
+          var dino2 = null;
+          return DinoInfoScreen(
+            api: api,
+            dino: dino2,
+            dinosaurNames: null,
+          );
+        },
         '/era_info': (context) => EraInfoScreen(
               era: Era(
                 name: "poopassic",

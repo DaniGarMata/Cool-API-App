@@ -103,7 +103,7 @@ class DinoListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 50,
+        height: 70,
         child: Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -121,7 +121,7 @@ class DinoListItem extends StatelessWidget {
                       dino.commonName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 18,
                         color: Colors.green[900],
                       ),
                     ),
@@ -129,7 +129,7 @@ class DinoListItem extends StatelessWidget {
                       dino.scientificName,
                       style: TextStyle(
                         fontStyle: FontStyle.italic,
-                        fontSize: 20,
+                        fontSize: 18,
                         color: Colors.green[900],
                       ),
                     )
