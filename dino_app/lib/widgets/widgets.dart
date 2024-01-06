@@ -80,7 +80,10 @@ class EraButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return GestureDetector(
+      onTap: (Navigator.pushReplacementNamed(context, '/$screen');),
+      child:
+      Expanded(
       child: Center(
         child: Text(
           name,
@@ -91,6 +94,7 @@ class EraButton extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }
@@ -102,7 +106,9 @@ class DinoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return GestureDetector(
+      onTap: (Navigator.pushReplacementNamed(context, '/dino_info');)
+      SizedBox(
         height: 70,
         child: Expanded(
           child: Row(
@@ -142,6 +148,6 @@ class DinoListItem extends StatelessWidget {
               )
             ],
           ),
-        ));
+        )));
   }
 }

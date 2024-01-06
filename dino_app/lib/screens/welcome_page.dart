@@ -10,7 +10,8 @@ class WelcomePage extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage("https://picsum.photos/1000"),
+            // This should be a random dino image
+            image: NetworkImage("https://picsum.photos/1000"), 
             fit: BoxFit.cover,
           ),
         ),

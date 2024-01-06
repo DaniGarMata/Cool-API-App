@@ -24,12 +24,14 @@ class _SelectDinoScreenState extends State<SelectDinoScreen> {
       body: Column(
         children: [
           TitleBar(title: "${widget.era} dinos", backPage: "select_era"),
-          //Row(children: [Expanded(child: Container(color: Colors.green[900], child: Center(child: DropdownMenu<String>(initialSelection: "Any", controller: TextEditingController(),requestFocusOnTap: true, label: Text("Diet"), onSelected: (String diet) {setState((){dietSelected = diet;});},),)),)],),
+          // This is for a dropdown menu for a diet/whatever filter
+          // Row(children: [Expanded(child: Container(color: Colors.green[900], child: Center(child: DropdownMenu<String>(initialSelection: "Any", controller: TextEditingController(),requestFocusOnTap: true, label: Text("Diet"), onSelected: (String diet) {setState((){dietSelected = diet;});},),)),)],),
           ListView.builder(
             itemCount: widget.dinosaurNames.length,
             itemBuilder: (context, index) {
               final dinoName = widget.dinosaurNames[index];
               return DinoListItem(
+                // This should get the dinos
                 dino: Dinosaur(
                   commonName: "pee", 
                   scientificName: "piss", 

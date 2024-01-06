@@ -17,63 +17,12 @@ class EraSelectScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const TitleBar(title: "Era Select", backPage: "welcome",),
-          const EraButton(name: "Triassic", screen: "idk"),
+          // Do we have to make a screen for each era? How do we differentiate when calling?
+          const EraButton(name: "Triassic", screen: "/select_dino"),
           Container(height: 1, width: 200, color: Colors.green[900]),
-          const EraButton(name: "Jurassic", screen: "idk"),
+          const EraButton(name: "Jurassic", screen: "/select_dino"),
           Container(height: 1, width: 200, color: Colors.green[900]),
-          const EraButton(name: "Cretaceous", screen: "idk"),
-          ElevatedButton(
-            onPressed: () async {
-              try {
-                final dinosaurNames = await api.fetchDinosaurs();
-                if (dinosaurNames.isNotEmpty) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SelectDinoScreen(
-                        dinosaurNames: dinosaurNames,
-                        api: api,
-                        era: "papope"
-                      ),
-                    ),
-                  );
-                } else {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('No Dinosaurs'),
-                      content: const Text('There are no dinosaurs available.'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-              } catch (error) {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Error'),
-                    content: const Text('Failed to load dinosaurs. Please try again later.'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  ),
-                );
-              }
-            },
-            child: const Text("Select Dino"),
-          ),
+          const EraButton(name: "Cretaceous", screen: "/select_dino"),
         ],
       ),
     );
