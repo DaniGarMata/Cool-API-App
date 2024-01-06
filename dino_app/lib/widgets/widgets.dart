@@ -83,14 +83,14 @@ class EraButton extends StatelessWidget {
     return GestureDetector(
       onTap: (Navigator.pushReplacementNamed(context, '/$screen');),
       child:
-      Expanded(
-      child: Center(
-        child: Text(
-          name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 50,
-            color: Colors.green[900],
+        Expanded(
+        child: Center(
+          child: Text(
+            name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 50,
+              color: Colors.green[900],
           ),
         ),
       ),
