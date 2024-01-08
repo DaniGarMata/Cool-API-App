@@ -1,3 +1,4 @@
+import 'package:dino_app/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:dino_app/models/dinosaur.dart';
 
@@ -59,15 +60,15 @@ class EraButton extends StatelessWidget {
 }
 
 class DinoListItem extends StatelessWidget {
-  const DinoListItem({super.key, required this.dino});
+  final List<String> dinoList; // Add this line
 
-  final Dinosaur dino;
+  const DinoListItem({Key? key, required this.dinoList, required Dinosaur dino}) : super(key: key); // Modify this line
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/dino_info', arguments: dino.commonName);
+        Navigator.pushReplacementNamed(context, '/dino_info');
       },
       child: SizedBox(
         height: 70,
@@ -76,7 +77,7 @@ class DinoListItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image(
-                image: NetworkImage(dino.imageURL),
+                image: NetworkImage("https://picsum.photos/300/200"), // Change this line as needed
               ),
               SizedBox(
                 width: 200,
@@ -85,7 +86,7 @@ class DinoListItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      dino.commonName,
+                      dinoList[0], // Change this line to display the appropriate dino information
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -93,7 +94,7 @@ class DinoListItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      dino.scientificName,
+                      dinoList[1], // Change this line to display the appropriate dino information
                       style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontSize: 18,
@@ -124,6 +125,30 @@ class NotFoundPage extends StatelessWidget {
       body: Center(
         child: Text(
           "Page not found!",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DinosaurListScreen extends StatelessWidget {
+  final DinosaurApi api;
+
+  const DinosaurListScreen({Key? key, required this.api, required List<String> dinoList, required List eraDinos}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Dinosaur List"),
+      ),
+      body: Center(
+        child: Text(
+          "This is the Dinosaur List Screen!",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
