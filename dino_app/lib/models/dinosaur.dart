@@ -29,6 +29,12 @@ class Dinosaur {
       height: json['height'].toDouble(),
     );
   }
+
+  get name => null;
+
+  get period => null;
+
+  get diet => null;
 }
 
 Future<List<Dinosaur>> fetchDinosaurs() async {

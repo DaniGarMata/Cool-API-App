@@ -36,4 +36,25 @@ class DinosaurApi {
       throw Exception('Failed to load dinosaur: $e');
     }
   }
+Future<List<List<String>>> fetchDinosaurNamesByEra(List<String> eras) async {
+    try {
+      final List<List<String>> result = [];
+
+      for (String era in eras) {
+        final response = await http.get(Uri.parse('$apiUrl?era=$era'));
+
+        if (response.statusCode == 200) {
+          final List<dynamic> data = json.decode(response.body);
+          final List<String> names = data.map((dinoData) => Dinosaur.fromJson(dinoData).name.toString()).toList();
+          result.add(names.take(2).toList()); // Take at least two names for each era
+        } else {
+          throw Exception('Failed to load dinosaur names. Status code: ${response.statusCode}');
+        }
+      }
+
+      return result;
+    } catch (e) {
+      throw Exception('Failed to load dinosaur names: $e');
+    }
+  }
 }

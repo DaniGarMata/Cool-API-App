@@ -2,6 +2,8 @@ import 'package:dino_app/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:dino_app/models/dinosaur.dart';
 
+import '../screens/dino_info_screen.dart';
+
 class InfoRow extends StatelessWidget {
   InfoRow({super.key, required this.category, required this.value});
 
@@ -60,58 +62,32 @@ class EraButton extends StatelessWidget {
 }
 
 class DinoListItem extends StatelessWidget {
-  final List<String> dinoList; // Add this line
+  final Dinosaur dino;
+  final List<String>? dinoList;  // Add this line
 
-  const DinoListItem({Key? key, required this.dinoList, required Dinosaur dino}) : super(key: key); // Modify this line
+  DinoListItem({
+    required this.dino,
+    Key? key,
+    this.dinoList,  // Add this line
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return ListTile(
+      title: Text(dino.commonName),
+      subtitle: Text(dino.scientificName),
+      // Add onTap to navigate to DinoInfoScreen
       onTap: () {
-        Navigator.pushReplacementNamed(context, '/dino_info');
-      },
-      child: SizedBox(
-        height: 70,
-        child: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image(
-                image: NetworkImage("https://picsum.photos/300/200"), // Change this line as needed
-              ),
-              SizedBox(
-                width: 200,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      dinoList[0], // Change this line to display the appropriate dino information
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.green[900],
-                      ),
-                    ),
-                    Text(
-                      dinoList[1], // Change this line to display the appropriate dino information
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontSize: 18,
-                        color: Colors.green[900],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.green[900],
-              )
-            ],
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DinoInfoScreen(
+              dino: dino,
+              dinoList: dinoList,
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

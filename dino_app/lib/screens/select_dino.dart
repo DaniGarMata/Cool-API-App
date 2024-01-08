@@ -1,5 +1,6 @@
 import 'package:dino_app/api/api.dart';
 import 'package:dino_app/models/dinosaur.dart';
+import 'package:dino_app/screens/dino_info_screen.dart';  // Import the DinoInfoScreen
 import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class SelectDinoScreen extends StatefulWidget {
     Key? key,
     required this.api,
     required this.era,
-    required this.eraDinos, required List dinosaurNames,
+    required this.eraDinos,
   }) : super(key: key);
 
   @override
@@ -21,6 +22,8 @@ class SelectDinoScreen extends StatefulWidget {
 
 class _SelectDinoScreenState extends State<SelectDinoScreen> {
   String dietSelected = "Any";
+  
+  get dino => null;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +42,12 @@ class _SelectDinoScreenState extends State<SelectDinoScreen> {
       ),
       body: Column(
         children: [
-          // This is for a dropdown menu for a diet/whatever filter
-          // Row(children: [Expanded(child: Container(color: Colors.green[900], child: Center(child: DropdownMenu<String>(initialSelection: "Any", controller: TextEditingController(),requestFocusOnTap: true, label: Text("Diet"), onSelected: (String diet) {setState((){dietSelected = diet;});},),)),)],),
           Expanded(
             child: ListView.builder(
               itemCount: widget.eraDinos.length,
               itemBuilder: (context, index) {
                 final dinoList = widget.eraDinos[index];
                 return DinoListItem(
-                  // This should get the dinos
                   dino: Dinosaur(
                     commonName: dinoList[0],
                     scientificName: dinoList[1],
@@ -58,7 +58,19 @@ class _SelectDinoScreenState extends State<SelectDinoScreen> {
                     imageURL: dinoList[5],
                     weight: double.parse(dinoList[6]),
                     height: double.parse(dinoList[7]),
-                  ), dinoList: [],
+                  ),
+                  // Add onTap functionality to navigate to DinoInfoScreen
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DinoInfoScreen( dino: dino,
+              dinoList: dinoList,
+                          
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),
