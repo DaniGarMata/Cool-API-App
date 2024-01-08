@@ -11,18 +11,32 @@ class EraSelectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Era Select",
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              color: Colors.lightGreen[300],
+            )),
+        backgroundColor: Colors.green[900],
+        toolbarHeight: 100,
+        iconTheme: IconThemeData(size: 50, color: Colors.lightGreen[300]),
+      ),
       backgroundColor: Colors.lightGreen[300],
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          const TitleBar(title: "Era Select", backPage: "welcome",),
           // Do we have to make a screen for each era? How do we differentiate when calling?
-          const EraButton(name: "Triassic", screen: "/select_dino"),
+          const Expanded(
+              child: EraButton(name: "Triassic", screen: "select_dino")),
           Container(height: 1, width: 200, color: Colors.green[900]),
-          const EraButton(name: "Jurassic", screen: "/select_dino"),
+          const Expanded(
+              child: EraButton(name: "Jurassic", screen: "select_dino")),
           Container(height: 1, width: 200, color: Colors.green[900]),
-          const EraButton(name: "Cretaceous", screen: "/select_dino"),
+          const Expanded(
+              child: EraButton(name: "Cretaceous", screen: "select_dino")),
         ],
       ),
     );

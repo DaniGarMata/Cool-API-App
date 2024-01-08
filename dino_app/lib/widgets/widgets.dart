@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dino_app/models/dinosaur.dart';
 
-class TitleBar extends StatelessWidget {
+/*class TitleBar extends StatelessWidget {
   const TitleBar({super.key, required this.title, required this.backPage});
 
   final String title, backPage;
@@ -17,7 +17,7 @@ class TitleBar extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/$backPage');
+              Navigator.of(context).pop();
             },
             icon: Icon(
               Icons.arrow_back,
@@ -38,7 +38,7 @@ class TitleBar extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
 class InfoRow extends StatelessWidget {
   InfoRow({super.key, required this.category, required this.value});
@@ -82,17 +82,15 @@ class EraButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacementNamed(context, '/$screen');
+        Navigator.pushNamed(context, '/$screen');
       },
-      child: Expanded(
-        child: Center(
-          child: Text(
-            name,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 50,
-              color: Colors.green[900],
-            ),
+      child: Center(
+        child: Text(
+          name,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 50,
+            color: Colors.green[900],
           ),
         ),
       ),

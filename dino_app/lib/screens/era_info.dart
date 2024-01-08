@@ -12,11 +12,21 @@ class EraInfoScreen extends StatelessWidget {
     const hspace = SizedBox(height: 10);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Era Select",
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              color: Colors.lightGreen[300],
+            )),
+        backgroundColor: Colors.green[900],
+        toolbarHeight: 100,
+        iconTheme: IconThemeData(size: 50, color: Colors.lightGreen[300]),
+      ),
       backgroundColor: Colors.lightGreen[300],
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TitleBar(title: era.name, backPage: "select_era"),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(

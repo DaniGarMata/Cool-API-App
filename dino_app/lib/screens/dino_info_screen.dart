@@ -6,18 +6,33 @@ import 'package:flutter/material.dart';
 class DinoInfoScreen extends StatelessWidget {
   final Dinosaur dino;
 
-  const DinoInfoScreen({Key? key, required this.dino, required dinosaurNames, required DinosaurApi api}) : super(key: key);
+  const DinoInfoScreen(
+      {Key? key,
+      required this.dino,
+      required dinosaurNames,
+      required DinosaurApi api})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     const hspace = SizedBox(height: 10);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Era Select",
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              color: Colors.lightGreen[300],
+            )),
+        backgroundColor: Colors.green[900],
+        toolbarHeight: 100,
+        iconTheme: IconThemeData(size: 50, color: Colors.lightGreen[300]),
+      ),
       backgroundColor: Colors.lightGreen[300],
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TitleBar(title: "Dino Info Page", backPage: "select_dino",),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(
@@ -44,11 +59,12 @@ class DinoInfoScreen extends StatelessWidget {
                 ),
                 hspace,
                 GestureDetector(
-                  onTap: () {Navigator.pushReplacementNamed(context, '/dino_image');},
-                  child:
-                  Image(
-                  image: NetworkImage(dino.imageURL),
-                ),
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/dino_image');
+                  },
+                  child: Image(
+                    image: NetworkImage(dino.imageURL),
+                  ),
                 ),
                 hspace,
                 Text(
@@ -68,9 +84,10 @@ class DinoInfoScreen extends StatelessWidget {
                   value: dino.placeOfDiscovery,
                 ),
                 GestureDetector(
-                  onTap: () {Navigator.pushReplacementNamed(context, '/era_info');},
-                  child:
-                    InfoRow(category: "Era: ", value: dino.era), 
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/era_info');
+                  },
+                  child: InfoRow(category: "Era: ", value: dino.era),
                 )
               ],
             ),

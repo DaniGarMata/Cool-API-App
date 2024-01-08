@@ -1,6 +1,4 @@
-import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:dino_app/models/dinosaur.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
