@@ -36,7 +36,7 @@ class InfoRow extends StatelessWidget {
 }
 
 class EraButton extends StatelessWidget {
-  const EraButton({super.key, required this.name, required this.screen});
+  const EraButton({super.key, required this.name, required this.screen, required String era});
 
   final String name, screen;
 
