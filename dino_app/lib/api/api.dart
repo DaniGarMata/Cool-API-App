@@ -24,4 +24,6 @@ class DinosaurApi {
   fetchDinosaurNames() {}
 
   fetchDinosaur(String dinoName) {}
+
+  fetchEra(String eraName) {}
 }

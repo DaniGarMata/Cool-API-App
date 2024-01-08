@@ -1,9 +1,10 @@
+import 'package:dino_app/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:dino_app/widgets/widgets.dart';
 import 'package:dino_app/models/era.dart';
 
 class EraInfoScreen extends StatelessWidget {
-  const EraInfoScreen({super.key, required this.era});
+  const EraInfoScreen({Key? key, required this.era}) : super(key: key);
 
   final Era era;
 
@@ -13,12 +14,14 @@ class EraInfoScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Era Select",
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              color: Colors.lightGreen[300],
-            )),
+        title: Text(
+          "Era Select",
+          style: TextStyle(
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+            color: Colors.lightGreen[300],
+          ),
+        ),
         backgroundColor: Colors.green[900],
         toolbarHeight: 100,
         iconTheme: IconThemeData(size: 50, color: Colors.lightGreen[300]),
@@ -55,9 +58,31 @@ class EraInfoScreen extends StatelessWidget {
                     color: Colors.green[900],
                   ),
                 ),
+                hspace,
+                // List of dinosaur names
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: era.dinosaurNames.length,
+                  itemBuilder: (context, index) {
+                    final dinoName = era.dinosaurNames[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/select_dino', arguments: dinoName);
+                      },
+                      child: Text(
+                        dinoName,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.green[900],
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

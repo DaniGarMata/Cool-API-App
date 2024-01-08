@@ -40,60 +40,48 @@ class _SelectDinoScreenState extends State<SelectDinoScreen> {
       body: Column(
         children: [
           // This is for a dropdown menu for a diet/whatever filter
-          // Row(children: [Expanded(child: Container(color: Colors.green[900], child: Center(child: DropdownMenu<String>(initialSelection: "Any", controller: TextEditingController(),requestFocusOnTap: true, label: Text("Diet"), onSelected: (String diet) {setState((){dietSelected = diet;});},),)),)],),
+          /*Row(
+            children: [
+              Expanded(
+                child: Container(
+                  color: Colors.green[900],
+                  child: Center(
+                    child: DropdownMenu<String>(
+                      initialSelection: "Any",
+                      controller: TextEditingController(),
+                      requestFocusOnTap: true,
+                      label: Text("Diet"),
+                      onSelected: (String diet) {
+                        setState(() {
+                          dietSelected = diet;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),*/
           Expanded(
             child: ListView.builder(
-                itemCount: widget.dinosaurNames.length,
-                itemBuilder: (context, index) {
-                  final dinoName = widget.dinosaurNames[index];
-                  return DinoListItem(
-                      // This should get the dinos
-                      dino: Dinosaur(
-                          commonName: "pee",
-                          scientificName: "piss",
-                          era: "lol",
-                          dietType: "peepee",
-                          description: "woaw",
-                          placeOfDiscovery: "aa",
-                          imageURL: "https://picsum.photos/300/200",
-                          weight: 3,
-                          height: 3));
-                }
-                // Add onTap to navigate to DinoInfoScreen or perform any action
-                /*onTap: () async {
-                    try {
-                      final dinosaur = await api.fetchDinosaur(dinoName);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            var api2 = null;
-                            return DinoInfoScreen(dino: dinosaur, dinosaurNames: null, api: api2,);
-                          },
-                        ),
-                      );
-                    } catch (error) {
-                      // Handle error, e.g., show an error dialog
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('Error'),
-                          content: Text('Failed to load dinosaur information: $error'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        ),
-                      );
-                    };
-                  }
+              itemCount: widget.dinosaurNames.length,
+              itemBuilder: (context, index) {
+                final dinoName = widget.dinosaurNames[index];
+                return DinoListItem(
+                  dino: Dinosaur(
+                    commonName: "pee",
+                    scientificName: "piss",
+                    era: "lol",
+                    dietType: "peepee",
+                    description: "woaw",
+                    placeOfDiscovery: "aa",
+                    imageURL: "https://picsum.photos/300/200",
+                    weight: 3,
+                    height: 3,
+                  ),
                 );
-              },*/
-                ),
+              },
+            ),
           ),
         ],
       ),

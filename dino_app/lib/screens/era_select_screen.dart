@@ -28,15 +28,17 @@ class EraSelectScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          // Do we have to make a screen for each era? How do we differentiate when calling?
           const Expanded(
-              child: EraButton(name: "Triassic", screen: "select_dino")),
+            child: EraButton(name: "Triassic", screen: "select_dino"),
+          ),
           Container(height: 1, width: 200, color: Colors.green[900]),
           const Expanded(
-              child: EraButton(name: "Jurassic", screen: "select_dino")),
+            child: EraButton(name: "Jurassic", screen: "select_dino"),
+          ),
           Container(height: 1, width: 200, color: Colors.green[900]),
           const Expanded(
-              child: EraButton(name: "Cretaceous", screen: "select_dino")),
+            child: EraButton(name: "Cretaceous", screen: "select_dino"),
+          ),
         ],
       ),
     );

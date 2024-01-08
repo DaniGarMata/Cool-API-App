@@ -9,4 +9,6 @@ class Era {
     required this.start,
     required this.end
   });
+
+  get dinosaurNames => null;
 }
