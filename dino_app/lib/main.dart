@@ -25,6 +25,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/welcome',
       routes: {
+        // Existing routes
         '/welcome': (context) => WelcomePage(),
         '/select_era': (context) => EraSelectScreen(api: api),
         '/select_dino': (context) => SelectDinoScreen(api: api, dinosaurNames: [], era: "papope"),
@@ -38,19 +39,29 @@ class App extends StatelessWidget {
         },
         '/dino_image': (context) {
           var dino2 = null;
-          return DinoImageScreen(
+          return DinoInfoScreen(
+            api: api,
             dino: dino2,
+            dinosaurNames: null,
           );
         },
         '/era_info': (context) => EraInfoScreen(
-          era: Era(
-            name: "poopassic",
-            description: "wow!!",
-            start: 22,
-            end: 12,
-            imageURL: "https://picsum.photos/300/200",
-          ),
-        ),
+              era: Era(
+                name: "poopassic",
+                description: "wow!!",
+                start: 22,
+                end: 12,
+                imageURL: "https://picsum.photos/300/200",
+              ),
+            ),
+        // New route for handling unknown routes
+        '/dinosaur_list': (context) => DinosaurListScreen(api: api),
+      },
+      onUnknownRoute: (settings) {
+        // Handle unknown routes by navigating to NotFoundPage
+        return MaterialPageRoute(
+          builder: (context) => NotFoundPage(),
+        );
       },
     );
   }

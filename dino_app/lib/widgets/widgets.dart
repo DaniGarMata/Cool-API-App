@@ -35,16 +35,15 @@ class InfoRow extends StatelessWidget {
 }
 
 class EraButton extends StatelessWidget {
-  const EraButton({super.key, required this.name, required this.screen});
+  const EraButton({Key? key, required this.name, required this.onTap}) : super(key: key);
 
-  final String name, screen;
+  final String name;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/$screen');
-      },
+      onTap: onTap,
       child: Center(
         child: Text(
           name,
@@ -109,6 +108,25 @@ class DinoListItem extends StatelessWidget {
                 color: Colors.green[900],
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+class NotFoundPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Not Found"),
+      ),
+      body: Center(
+        child: Text(
+          "Page not found!",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
