@@ -81,9 +81,10 @@ class EraButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (Navigator.pushReplacementNamed(context, '/$screen');),
-      child:
-        Expanded(
+      onTap: () {
+        Navigator.pushReplacementNamed(context, '/$screen');
+      },
+      child: Expanded(
         child: Center(
           child: Text(
             name,
@@ -91,10 +92,10 @@ class EraButton extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 50,
               color: Colors.green[900],
+            ),
           ),
         ),
       ),
-    ),
     );
   }
 }
@@ -107,47 +108,49 @@ class DinoListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (Navigator.pushReplacementNamed(context, '/dino_info');)
-      SizedBox(
-        height: 70,
-        child: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image(
-                image: NetworkImage(dino.imageURL),
-              ),
-              SizedBox(
-                width: 200,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      dino.commonName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.green[900],
-                      ),
+        onTap: () {
+          Navigator.pushReplacementNamed(context, '/dino_info');
+        },
+        child: SizedBox(
+            height: 70,
+            child: Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image(
+                    image: NetworkImage(dino.imageURL),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          dino.commonName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.green[900],
+                          ),
+                        ),
+                        Text(
+                          dino.scientificName,
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontSize: 18,
+                            color: Colors.green[900],
+                          ),
+                        )
+                      ],
                     ),
-                    Text(
-                      dino.scientificName,
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontSize: 18,
-                        color: Colors.green[900],
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.green[900],
+                  )
+                ],
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.green[900],
-              )
-            ],
-          ),
-        )));
+            )));
   }
 }

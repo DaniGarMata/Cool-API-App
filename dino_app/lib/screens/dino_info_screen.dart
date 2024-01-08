@@ -44,12 +44,12 @@ class DinoInfoScreen extends StatelessWidget {
                 ),
                 hspace,
                 GestureDetector(
-                  onTap: (Navigator.pushReplacementNamed(context, '/dino_image');)
+                  onTap: () {Navigator.pushReplacementNamed(context, '/dino_image');},
                   child:
                   Image(
                   image: NetworkImage(dino.imageURL),
                 ),
-                )
+                ),
                 hspace,
                 Text(
                   dino.description,
@@ -68,7 +68,7 @@ class DinoInfoScreen extends StatelessWidget {
                   value: dino.placeOfDiscovery,
                 ),
                 GestureDetector(
-                  onTap: (Navigator.pushReplacementNamed(context, '/era_info');),
+                  onTap: () {Navigator.pushReplacementNamed(context, '/era_info');},
                   child:
                     InfoRow(category: "Era: ", value: dino.era), 
                 )
