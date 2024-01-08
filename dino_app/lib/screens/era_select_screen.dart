@@ -1,6 +1,7 @@
 import 'package:dino_app/api/api.dart';
-import 'package:dino_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:dino_app/widgets/widgets.dart';
+import 'package:dino_app/screens/select_dino.dart';
 
 class EraSelectScreen extends StatelessWidget {
   final DinosaurApi api;
@@ -27,32 +28,15 @@ class EraSelectScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Expanded(
-            child: EraButton(
-              name: "Triassic",
-              onTap: () {
-                Navigator.pushNamed(context, '/dinosaur_list', arguments: "Triassic");
-              },
-            ),
-          ),
+          // Do we have to make a screen for each era? How do we differentiate when calling?
+          const Expanded(
+              child: EraButton(name: "Triassic", screen: "select_dino")),
           Container(height: 1, width: 200, color: Colors.green[900]),
-          Expanded(
-            child: EraButton(
-              name: "Jurassic",
-              onTap: () {
-                Navigator.pushNamed(context, '/dinosaur_list', arguments: "Jurassic");
-              },
-            ),
-          ),
+          const Expanded(
+              child: EraButton(name: "Jurassic", screen: "select_dino")),
           Container(height: 1, width: 200, color: Colors.green[900]),
-          Expanded(
-            child: EraButton(
-              name: "Cretaceous",
-              onTap: () {
-                Navigator.pushNamed(context, '/dinosaur_list', arguments: "Cretaceous");
-              },
-            ),
-          ),
+          const Expanded(
+              child: EraButton(name: "Cretaceous", screen: "select_dino")),
         ],
       ),
     );

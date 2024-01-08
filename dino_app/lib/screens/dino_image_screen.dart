@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class DinoImageScreen extends StatelessWidget {
   final Dinosaur dino;
 
-  const DinoImageScreen({Key? key, required this.dino}) : super(key: key);
+  const DinoImageScreen({Key? key, required this.dino, required dinosaurNames, required DinosaurApi api}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,12 @@ class DinoImageScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Era Select",
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold,
-            color: Colors.lightGreen[300],
-          ),
-        ),
+        title: Text("Era Select",
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              color: Colors.lightGreen[300],
+            )),
         backgroundColor: Colors.green[900],
         toolbarHeight: 100,
         iconTheme: IconThemeData(size: 50, color: Colors.lightGreen[300]),

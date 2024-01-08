@@ -1,8 +1,6 @@
-import 'package:dino_app/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:dino_app/models/dinosaur.dart';
 
-import '../screens/dino_info_screen.dart';
 
 class InfoRow extends StatelessWidget {
   InfoRow({super.key, required this.category, required this.value});
@@ -38,15 +36,16 @@ class InfoRow extends StatelessWidget {
 }
 
 class EraButton extends StatelessWidget {
-  const EraButton({Key? key, required this.name, required this.onTap}) : super(key: key);
+  const EraButton({super.key, required this.name, required this.screen});
 
-  final String name;
-  final VoidCallback onTap;
+  final String name, screen;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.pushNamed(context, '/$screen');
+      },
       child: Center(
         child: Text(
           name,
@@ -62,75 +61,56 @@ class EraButton extends StatelessWidget {
 }
 
 class DinoListItem extends StatelessWidget {
+  const DinoListItem({super.key, required this.dino});
+
   final Dinosaur dino;
-  final List<String>? dinoList;  // Add this line
-
-  DinoListItem({
-    required this.dino,
-    Key? key,
-    this.dinoList,  // Add this line
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(dino.commonName),
-      subtitle: Text(dino.scientificName),
-      // Add onTap to navigate to DinoInfoScreen
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DinoInfoScreen(
-              dino: dino,
-              dinoList: dinoList,
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-class NotFoundPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Not Found"),
-      ),
-      body: Center(
-        child: Text(
-          "Page not found!",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class DinosaurListScreen extends StatelessWidget {
-  final DinosaurApi api;
-
-  const DinosaurListScreen({Key? key, required this.api, required List<String> dinoList, required List eraDinos}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Dinosaur List"),
-      ),
-      body: Center(
-        child: Text(
-          "This is the Dinosaur List Screen!",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
+    return GestureDetector(
+        onTap: () {
+          Navigator.pushReplacementNamed(context, '/dino_info');
+        },
+        child: SizedBox(
+            height: 70,
+            child: Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image(
+                    image: NetworkImage(dino.imageURL),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          dino.commonName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.green[900],
+                          ),
+                        ),
+                        Text(
+                          dino.scientificName,
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontSize: 18,
+                            color: Colors.green[900],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.green[900],
+                  )
+                ],
+              ),
+            )));
   }
 }
